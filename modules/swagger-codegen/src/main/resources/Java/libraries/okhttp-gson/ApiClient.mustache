@@ -55,7 +55,7 @@ import {{invokerPackage}}.auth.OAuth;
 
 public class ApiClient {
 
-    private String basePath = "{{{basePath}}}";
+    private String basePath;// = "{{{basePath}}}";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private String tempFolderPath = null;
@@ -92,7 +92,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Swagger-Codegen/{{{artifactVersion}}}/java{{/httpUserAgent}}");
+        //setUserAgent("{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Swagger-Codegen/{{{artifactVersion}}}/java{{/httpUserAgent}}");
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications = new HashMap<String, Authentication>();{{#authMethods}}{{#isBasic}}
@@ -259,6 +259,11 @@ public class ApiClient {
 
     public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
         this.json.setLocalDateFormat(dateFormat);
+        return this;
+    }
+
+	 public ApiClient setLocalDateTimeFormat(DateTimeFormatter dateFormat) {
+        this.json.setLocalDateTimeFormat(dateFormat);
         return this;
     }
 
